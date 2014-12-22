@@ -346,7 +346,8 @@ function TrashGame(){
 
 	this.gameOver= function(inWinner){
 		//alert('Game over.  Congrats to: ' + inWinner);
-		displayMsgBox('Game Over', 'Congratulations to the winnder: ' + inWinner);
+		displayMsgBox('Game Over', 'Congratulations to the winner: ' + inWinner);
+		
 	}
 
 
@@ -735,6 +736,7 @@ function TrashGame(){
     } // end of this.init()
     
     this.init();
+    
 } //end of TrashGame
 
 
@@ -743,6 +745,8 @@ function TrashGame(){
 *	for clicks on yeah card on the screen.
 ******************************************************/
 var trshGame = new TrashGame();
+displayMsgBox('Welcome to Trash', 'It is your turn.');
+
 for (var i=0; i<document.getElementsByClassName('card').length; i++){
 	document.getElementsByClassName('card')[i].addEventListener('click', function(e){ trshGame.routeClick(this.id);},false);
 }
@@ -751,6 +755,9 @@ for (var i=0; i<document.getElementsByClassName('card').length; i++){
 function closeMsgBox(){
 	document.getElementsByClassName('transBG')[0].style.visibility='hidden';
 	document.getElementsByClassName('msgBox')[0].style.visibility='hidden';
+  	if (trshGame.cpuCardRemaining==0 || trshGame.plyrCardRemaining==0){
+  		Location.reload();
+	}
 }
 
 function displayMsgBox(strHead,strBody){
