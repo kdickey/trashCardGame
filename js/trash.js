@@ -537,7 +537,7 @@ function TrashGame(){
 			if ((card1Rank=="A" && card2Pos=="0") || (card1Rank=="2" && card2Pos=="1") || (card1Rank=="3" && card2Pos=="2") || (card1Rank=="4" && card2Pos=="3") || (card1Rank=="5" && card2Pos=="4") || (card1Rank=="6" && card2Pos=="5") || (card1Rank=="7" && card2Pos=="6") || (card1Rank=="8" && card2Pos=="7") || (card1Rank=="9" && card2Pos=="8") || (card1Rank=="10" && card2Pos=="9")){
 			
 				if((this.currentTurn=="CPU" && inCard2.substr(0,7)=="cpuCard" && this.cpuCardPile.pile[inCard2.substr(7,1)].bVisible==true) || (this.currentTurn=="PLAYER" && inCard2.substr(0,8)=="plyrCard" && this.plyrCardPile.pile[inCard2.substr(8,1)].bVisible==true)){
-					if (card2Rank=="K"){
+					if (card2Rank=="K" || card2Rank=="Q"){
 						return true;
 					}else{
 						//alert('This card is already turned over and will need to go to the discard pile.');
