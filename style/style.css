@@ -1,0 +1,59 @@
+body {	    
+  width: 585px;
+  width: 850px;
+  background-color: #CCC;
+/*background: linear-gradient(to bottom, rgba(167, 158, 167, 1) 0%, rgba(254, 238, 255, 1) 100%); */
+  margin: 0 auto;
+}
+
+.card {
+  visibility: hidden;
+  color: #0F0;
+  text-shadow: 0px 0px 1px #000;
+  border-radius: 8px;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  width: 69px;
+  height: 94px;
+  margin: 5px;
+  background-color: #FFFFFF;
+  background-image: url('../images/cardBack.jpg');
+  display: inline-block;
+  border: 1px solid rgba(0,0,0,0.6);
+}
+
+.cardarea {
+  text-align: center;
+  margin: 5px auto;
+  border: 1px solid rgba(0,0,0,0.3);
+  background-color: #d1d6d1;
+  border-radius: 8px;	      
+}
+
+div#cpuCards {
+  -webkit-transform: rotate(180deg); 
+}
+
+div#cardPiles {
+/*width: 100%;  */
+  margin: 0 auto;
+}
+
+#activeCard {
+  visibility: hidden;
+}
+
+#oldPile {
+  visibility: hidden;
+}
+
+.card:hover{
+  box-shadow: 0px 0px 4px 4px rgba(0, 128, 255,0.5);
+}
+
+.cardarea > p {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-align:center;
+  font-size: 24px;
+  margin: 5px;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+}	   
