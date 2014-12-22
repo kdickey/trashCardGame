@@ -756,7 +756,7 @@ function closeMsgBox(){
 	document.getElementsByClassName('transBG')[0].style.visibility='hidden';
 	document.getElementsByClassName('msgBox')[0].style.visibility='hidden';
   	if (trshGame.cpuCardRemaining==0 || trshGame.plyrCardRemaining==0){
-  		Location.reload();
+  		location.reload();
 	}
 }
 
