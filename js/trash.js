@@ -319,8 +319,8 @@ function TrashGame(){
        	}
        
        	//announce winner
-       	alert('Good job: ' + inWinner);
-
+       	//alert('Good job: ' + inWinner);
+		displayMsgBox('Good Job!',inWinner + ' has won the match.');
 		//set winner as first player next game
        	this.currentTurn=inWinner;
        	
@@ -345,7 +345,8 @@ function TrashGame(){
     }	
 
 	this.gameOver= function(inWinner){
-		alert('Game over.  Congrats to: ' + inWinner);
+		//alert('Game over.  Congrats to: ' + inWinner);
+		displayMsgBox('Game Over', 'Congratulations to the winnder: ' + inWinner);
 	}
 
 
@@ -375,7 +376,8 @@ function TrashGame(){
        		this.drawBoard();
     	}else{
        		//notify user they must move their active card first.
-       		alert('cannot get another card!');
+       		//alert('cannot get another card!');
+       		displayMsgBox('Warning','You cannot get another card at this time.');
     	}    
 	}
 
@@ -391,7 +393,8 @@ function TrashGame(){
 	    		this.highlightCard(this.card1);
 	    	}
 	    }else if(this.card1==inValue){ 
-	    		alert('Cannot play a card upon itself!');
+	    		//alert('Cannot play a card upon itself!');
+				displayMsgBox('Warning','Cannot play a card upon itself!');
                 this.resetClickedCards();
 	    }else if(this.card2==""){ 
 	        if(this.card1=="oldPile" && inValue=="activeCard"){
@@ -449,7 +452,9 @@ function TrashGame(){
 		if ((inCard1=="oldPile" && this.disCardPile.pile.length>0) || inCard1=="activeCard") {
 	 		return true;
 	 	}else if(inCard1=="oldPile" && this.disCardPile.pile.length==0) {
-	 		alert('There are no card to select from discard pile.');
+	 		//alert('There are no card to select from discard pile.');
+	 		displayMsgBox('Warning','There are no cards to select from discard pile.');
+
 	 	}else{
 	 		return false;
 	 	}
@@ -484,7 +489,8 @@ function TrashGame(){
 			if((this.currentTurn=="CPU" && inCard2.substr(0,7)=="cpuCard" && this.cpuCardPile.pile[inCard2.substr(7,1)].bVisible==false) || (this.currentTurn=="PLAYER" && inCard2.substr(0,8)=="plyrCard" && this.plyrCardPile.pile[inCard2.substr(8,1)].bVisible==false)){
 				return true;
 			}else{
-				alert('You can only play this on your card you have not flipped over yet.');
+				//alert('You can only play this on your card you have not flipped over yet.');
+		 		displayMsgBox('Warning', 'You can only play this on your card you have not flipped over yet.');					
 				return false;
 			}
 		}else if(card1Rank=="Q"){
@@ -512,12 +518,14 @@ function TrashGame(){
 				}
 			}else{
 				
-				alert('You can only play this on your oppenents card they have flipped over.');
+				//alert('You can only play this on your oppenents card they have flipped over.');
+		 		displayMsgBox('Warning','You can only play this on your opponents card they have flipped over.');					
 				return false;
 			}
 		}else if(card1Rank=="J"){
 			if (card2Rank != "D") {
-				alert('Jacks cannot do anything in this game.  Your only move is to the discard pile.');
+				//alert('Jacks cannot do anything in this game.  Your only move is to the discard pile.');
+		 		displayMsgBox('Warning', 'Jacks cannot do anything in this game.  Your only move is to the discard pile.');					
 				return false;
 			}else{
 				//swap to discard pile
@@ -532,7 +540,8 @@ function TrashGame(){
 					if (card2Rank=="K"){
 						return true;
 					}else{
-						alert('This card is already turned over and will need to go to the discard pile.');
+						//alert('This card is already turned over and will need to go to the discard pile.');
+				 		displayMsgBox('Warning', 'This card is already turned over and will need to go to the discard pile.');					
 						return false;			
 					}
 				}else{
@@ -540,7 +549,8 @@ function TrashGame(){
 				}
 				
 			}else{
-				alert('Must select a card from the same position in your hand.');
+				//alert('Must select a card from the same position in your hand.');
+				displayMsgBox('Warning', 'Must select a card from the same position in your hand.');
 				return false;
 			}
 		}else if(card2Rank=="D"){
@@ -548,7 +558,8 @@ function TrashGame(){
 				if((this.currentTurn=="PLAYER" && this.plyrCardPile.pile[0].bVisible==true) || (this.currentTurn=="CPU" && this.cpuCardPile.pile[0].bVisible==true)){
 					return true;
 				}else{
-					alert("This card is playable! Don't discard.");
+					//alert("This card is playable! Don't discard.");
+					displayMsgBox('Warning', "This card is playable! Don't discard.");
 					return false;
 				}
 			}else{
@@ -557,12 +568,14 @@ function TrashGame(){
 				}else if((this.currentTurn=="PLAYER" && this.plyrCardPile.pile[parseInt(card1Rank)-1].bVisible==true) || (this.currentTurn=="CPU" && this.cpuCardPile.pile[parseInt(card1Rank)-1].bVisible==true)){
 					return true;
 				}else{
-					alert("This card is playable! Don't discard.");
+					//alert("This card is playable! Don't discard.");
+					displayMsgBox('Warning', "This card is playable! Don't discard.");
 					return false;
 				}
 			}
 		}else{
-			alert('Must select a card from the same position in your hand.');
+			//alert('Must select a card from the same position in your hand.');
+			displayMsgBox('Warning', 'Must select a card from the same position in your hand.');
 			return false;
 		}
  	} //end this.validateCard2
@@ -734,3 +747,18 @@ for (var i=0; i<document.getElementsByClassName('card').length; i++){
 	document.getElementsByClassName('card')[i].addEventListener('click', function(e){ trshGame.routeClick(this.id);},false);
 }
 
+
+function closeMsgBox(){
+	document.getElementsByClassName('transBG')[0].style.visibility='hidden';
+	document.getElementsByClassName('msgBox')[0].style.visibility='hidden';
+}
+
+function displayMsgBox(strHead,strBody){
+//	document.getElementsByClassName('msgBox')[0].style.top=((window.innerWidth-300)/2) +'px';
+	document.getElementsByClassName('msgBox')[0].style.left=((window.innerWidth-300)/2) +'px';
+    
+	document.getElementById('msgHeadText').textContent=strHead;
+	document.getElementById('msgBodyText').textContent=strBody;
+	document.getElementsByClassName('transBG')[0].style.visibility='visible';
+	document.getElementsByClassName('msgBox')[0].style.visibility='visible';
+}
